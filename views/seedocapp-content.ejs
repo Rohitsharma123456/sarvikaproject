@@ -1,0 +1,71 @@
+<form>
+
+    <!-- • Doctor ID - Text Field (Numeric only)
+• Availability Date - Date Picker (Future Date only)
+• Start time - Time Picker
+• End time - Time Picker (Can not be less than start time)
+• Slot duration - Select Field (15,30,45,60 minutes) -->
+    <div class="form-group">
+      <label for="exampleInputEmail1">Doctor ID</label><br>
+      <select class="form-select" id="docid" aria-label="Default select example" onchange="toggleenvtype()">
+        <option selected>select doctor here to proceed</option>
+        <% alldocs.map((doc)=>{%>
+            <option value="<%= doc.docid %>"><%= doc.docid %></option>
+        <%})%>
+      </select>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Availabilie Dates</label>
+        <select class="form-select" id="avdate" onchange="toggleenvtype()" aria-label="Default select example" onchange="toggleenvtype()">
+            <option selected>select date here to proceed</option>
+           
+          </select>
+      </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Availible timeslots</label><br>
+        <select class="form-select" id="atimeslots" aria-label="Default select example">
+          <option selected>Availible timeslots</option>
+         
+        </select>
+      </div>
+  </form>
+
+
+<script>
+      $(document).ready(function(){
+    $('input.timepicker').timepicker({});
+});
+function toggleenvtype(){
+     var docid = $('#docid').val();
+     var avdate= $('#avdate').val();
+     const requestOptions = {
+         method: 'get',
+       
+        
+     };
+     if(avdate){
+        
+     }
+     var baseurl= "<%= base_url %>";
+    var url= baseurl+"getdocbyid/"+docid;
+     fetch(url, requestOptions)
+     .then(response => response.json())
+     .then(data => {
+        if (data.status) {
+      
+            console.log("data",data)
+            const timeslots = data.data.date;
+        // Clear existing options
+        $('#avdate').empty();
+
+        // Populate options from timeslots array
+        timeslots.forEach(slot => {
+          $('#avdate').append(`<option value="${slot.date}">${slot.date}</option>`);
+        });
+      } else {
+        alert(data.message);
+      }
+     })
+    }
+    
+</script>
