@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
         <label for="exampleInputPassword1">Availabilie Dates</label>
-        <select class="form-select" id="avdate" onchange="toggleenvtype()" aria-label="Default select example" onchange="toggleenvtype()">
+        <select class="form-select" id="avdate" onchange="populatetimeslots()" aria-label="Default select example" onchange="toggleenvtype()">
             <option selected>select date here to proceed</option>
            
           </select>
@@ -37,15 +37,11 @@
 });
 function toggleenvtype(){
      var docid = $('#docid').val();
-     var avdate= $('#avdate').val();
      const requestOptions = {
          method: 'get',
        
         
      };
-     if(avdate){
-        
-     }
      var baseurl= "<%= base_url %>";
     var url= baseurl+"getdocbyid/"+docid;
      fetch(url, requestOptions)
@@ -61,6 +57,36 @@ function toggleenvtype(){
         // Populate options from timeslots array
         timeslots.forEach(slot => {
           $('#avdate').append(`<option value="${slot.date}">${slot.date}</option>`);
+        });
+      } else {
+        alert(data.message);
+      }
+     })
+    }
+
+    function populatetimeslots(){
+        var avdate=$('#avdate').val();
+        var docid = $('#docid').val();
+     const requestOptions = {
+         method: 'get',
+       
+        
+     };
+     var baseurl= "<%= base_url %>";
+    var url= baseurl+"getdocbyid/"+docid;
+     fetch(url, requestOptions)
+     .then(response => response.json())
+     .then(data => {
+        if (data.status) {
+      
+            console.log("data",data)
+            const timeslots = data.data.date?.filter(e=>e.date==avdate)[0]["st"];
+        // Clear existing options
+        $('#atimeslots').empty();
+
+        // Populate options from timeslots array
+        timeslots.forEach(slot => {
+          $('#atimeslots').append(`<option value="${slot}">${slot}</option>`);
         });
       } else {
         alert(data.message);
