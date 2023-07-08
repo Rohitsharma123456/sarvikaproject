@@ -33,6 +33,7 @@ const port = 5000;
 app.use(bodyParser.urlencoded({ extended: true }));
 require("dotenv").config();
 app.set("view engine", "ejs")
+const base_url = process.env.BASE_URL+"/doc/";
 require("./config/database").connect();
 const DocRouter = require("./routes/api");
 // Parse JSON bodies
@@ -40,6 +41,9 @@ const DocRouter = require("./routes/api");
 
 // Your existing routes and other middleware
 app.use("/doc", DocRouter);
+app.use("/", (req,res)=>{
+    res.render("showlinks",{base_url})
+});
 // Start the server
 app.listen(port, () => {
   console.log('Server is running on port 3000');
