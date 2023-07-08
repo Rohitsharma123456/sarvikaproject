@@ -1,3 +1,4 @@
+<table>
 <form>
 
     <!-- • Doctor ID - Text Field (Numeric only)
@@ -5,47 +6,47 @@
 • Start time - Time Picker
 • End time - Time Picker (Can not be less than start time)
 • Slot duration - Select Field (15,30,45,60 minutes) -->
-    <div class="form-group">
-      <label for="exampleInputEmail1">Doctor ID</label>
-      <input type="number" class="form-control" id="docid" aria-describedby="emailHelp" placeholder="docid">
+   <tr> <div class="form-group">
+     <td> <label for="exampleInputEmail1">Doctor ID</label></td>
+    <td>  <input type="number" class="form-control" id="docid" aria-describedby="emailHelp" style="width: 200px;" placeholder="docid"></td>
     
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Availability Date</label>
-      <input type="date" class="form-control" id="avdate" placeholder="Password">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Slot duration</label>
-        <select class="form-select" id="slot" aria-label="Default select example" >
+    </div></tr>
+    <tr><div class="form-group">
+     <td> <label for="exampleInputPassword1">Availability Date</label></td>
+     <td> <input type="date" class="form-control" style="width: 200px;" id="avdate" placeholder="Password"></td>
+    </div></tr>
+    <tr><div class="form-group">
+        <td><label for="exampleInputPassword1">Slot duration</label></td>
+        <td><select class="form-select" id="slot" style="width: 200px;" aria-label="Default select example" >
             <option selected value="30">30 </option>
            
             <option value="60">60</option>
             <option value="90">90</option>
             <option value="120">120</option>
-          </select>
-      </div>
-      <div class="form-outline">
-        <label class="form-label" for="starttime">Start time</label>
-        <select class="form-select" id="starttime" multiple>
+          </select></td>
+      </div></tr>
+     <tr> <div class="form-outline">
+        <td><label class="form-label" for="starttime">Start time</label></td>
+        <td> <select class="form-select" style="width: 200px;" id="starttime" multiple>
           <!-- Start time options will be dynamically generated -->
-        </select>
-      </div>
+        </select></td>
+      </div></tr>
       
-      <div class="form-outline">
-        <label class="form-label" for="endtime">End time</label>
-        <select class="form-select" id="endtime" multiple>
+     <tr> <div class="form-outline">
+        <td><label class="form-label" for="endtime">End time</label></td>
+        <td><select class="form-select" style="width: 200px;" id="endtime" multiple>
           <!-- End time options will be dynamically generated -->
-        </select>
-      </div>
+        </select></td>
+      </div></tr>
       
       
     
      
    
-    <button type="button" class="btn btn-primary" onclick="handlesubmit()">Submit</button>
+   <td> <button type="button" class="btn btn-primary" onclick="handlesubmit()">Submit</button></td>
   </form>
 
-
+</table>
 <script>
 
 function generateTimeOptions(slot) {

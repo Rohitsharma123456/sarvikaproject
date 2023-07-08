@@ -1,34 +1,40 @@
-<form>
-
-    <!-- • Doctor ID - Text Field (Numeric only)
-• Availability Date - Date Picker (Future Date only)
-• Start time - Time Picker
-• End time - Time Picker (Can not be less than start time)
-• Slot duration - Select Field (15,30,45,60 minutes) -->
-    <div class="form-group">
-      <label for="exampleInputEmail1">Doctor ID</label><br>
-      <select class="form-select" id="docid" aria-label="Default select example" onchange="toggleenvtype()">
-        <option selected>select doctor here to proceed</option>
-        <% alldocs.map((doc)=>{%>
-            <option value="<%= doc.docid %>"><%= doc.docid %></option>
-        <%})%>
-      </select>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Availabilie Dates</label>
-        <select class="form-select" id="avdate" onchange="populatetimeslots()" aria-label="Default select example" onchange="toggleenvtype()">
-            <option selected>select date here to proceed</option>
-           
+<table>
+    <tr>
+      <td>
+        <div class="form-group">
+          <label for="exampleInputEmail1" style="display: inline-block; width: 200px;">Doctor ID</label>
+          <select class="form-select" id="docid"style="width: 200px;" aria-label="Default select example" onchange="toggleenvtype()">
+            <option selected>select doctor here to proceed</option>
+            <% alldocs.map((doc) => { %>
+              <option value="<%= doc.docid %>"><%= doc.docid %></option>
+            <% }) %>
           </select>
-      </div>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Availible timeslots</label><br>
-        <select class="form-select" id="atimeslots" aria-label="Default select example">
-          <option selected>Availible timeslots</option>
-         
-        </select>
-      </div>
-  </form>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <label for="exampleInputPassword1" style="display: inline-block; width: 200px;">Availability Dates</label>
+          <select class="form-select" id="avdate" style="width: 200px;" onchange="populatetimeslots()" aria-label="Default select example" onchange="toggleenvtype()">
+            <option selected>select date here to proceed</option>
+          </select>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <label for="exampleInputEmail1" style="display: inline-block; width: 200px;">Available Time Slots</label>
+          <select class="form-select" id="atimeslots" style="width: 200px;" aria-label="Default select example">
+            <option selected>Available time slots</option>
+          </select>
+        </div>
+      </td>
+    </tr>
+  </table>
+  
+  
 
 
 <script>

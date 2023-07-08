@@ -29,10 +29,22 @@ module.exports={
         et:edate
     }
     if (olddoc) {
-        console.log("olddoc", olddoc);
-    
-        olddoc.date.push(newdatetimeobject); // Push the newdatetimeobject to the date array
-    
+        const olddateexists = olddoc.date?.find(e => {
+            const eDate = new Date(e.date);
+            const inputDate = new Date(avdate);
+            return eDate.toISOString() === inputDate.toISOString();
+          });
+       
+
+          if (olddateexists) {
+            console.log("olddateexists", olddateexists);
+            // Update the st and et values in olddateexists
+            olddateexists.st = sdate;
+            olddateexists.et = edate;
+          } else {
+            olddoc.date.push(newdatetimeobject);
+          }
+      
         olddoc.save()
           .then(() => {
             return res.send({
